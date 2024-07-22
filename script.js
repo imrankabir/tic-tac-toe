@@ -12,10 +12,10 @@ const WINNING_COMBINATIONS = [
 ];
 
 const cellElements = document.querySelectorAll('[data-cell]');
-const board = document.getElementById('game-board');
-const winningMessageElement = document.getElementById('winning-message');
+const board = document.querySelector('#game-board');
+const winningMessageElement = document.querySelector('#winning-message');
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]');
-const restartButton = document.getElementById('restartButton');
+const restartButton = document.querySelector('#restartButton');
 const scoreKey = 'score';
 let circleTurn;
 
@@ -101,21 +101,27 @@ const handleClick = e => {
         if (!circleTurn) {
             // Computer's turn
             computerMove();
+        } else {
+            enableHumanTurn();
         }
     }
 };
 
 const computerMove = () => {
-    const bestMove = minimax([...cellElements], 0, true);
-    placeMark(cellElements[bestMove.index], X_CLASS);
-    if (checkWin(X_CLASS)) {
-        endGame(false);
-    } else if (isDraw()) {
-        endGame(true);
-    } else {
-        swapTurns();
-        setBoardHoverClass();
-    }
+    disableHumanTurn();
+    setTimeout(() => {
+        const bestMove = minimax([...cellElements], 0, true);
+        placeMark(cellElements[bestMove.index], X_CLASS);
+        if (checkWin(X_CLASS)) {
+            endGame(false);
+        } else if (isDraw()) {
+            endGame(true);
+        } else {
+            swapTurns();
+            setBoardHoverClass();
+            enableHumanTurn();
+        }
+    }, 500); // Added delay to simulate thinking time
 };
 
 const minimax = (cells, depth, isMaximizing) => {
@@ -155,6 +161,20 @@ const minimax = (cells, depth, isMaximizing) => {
         }
         return { score: bestScore, index: cells.indexOf(availableCells[bestMove]) };
     }
+};
+
+const disableHumanTurn = () => {
+    cellElements.forEach(cell => {
+        cell.removeEventListener('click', handleClick);
+    });
+};
+
+const enableHumanTurn = () => {
+    cellElements.forEach(cell => {
+        if (!cell.classList.contains(X_CLASS) && !cell.classList.contains(O_CLASS)) {
+            cell.addEventListener('click', handleClick, { once: true });
+        }
+    });
 };
 
 const startGame = () => {
