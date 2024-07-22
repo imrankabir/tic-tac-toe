@@ -24,9 +24,9 @@ body {
     width: 100px;
     height: 100px;
     display: flex;
-    font-size: 2em;
+    font-size: 5em;
     cursor: pointer;
-    align-items: center;
+    align-items: baseline;
     border: 1px solid #333;
     background-color: #fff;
     justify-content: center;
@@ -70,6 +70,7 @@ button {
 }
 
 button:hover {
-    background: #f59;
-    opacity: rgba(0, 0, 0, .5);
+    opacity: .8;
+    color: #000;
+    background: #999;
 }
