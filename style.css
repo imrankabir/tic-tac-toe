@@ -66,4 +66,10 @@ button {
     cursor: pointer;
     margin-top: 10px;
     padding: 10px 20px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #f59;
+    opacity: rgba(0, 0, 0, .5);
 }
