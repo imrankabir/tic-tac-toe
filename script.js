@@ -16,7 +16,7 @@ const board = document.querySelector('#game-board');
 const winningMessageElement = document.querySelector('#winning-message');
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]');
 const restartButton = document.querySelector('#restartButton');
-const scoreKey = 'score';
+const scoreKey = 'scores';
 let circleTurn;
 
 const saveScore = (type) => {
@@ -100,9 +100,8 @@ const handleClick = e => {
         endGame(true);
     } else {
         swapTurns();
-        setBoardHoverClass();
+        // setBoardHoverClass();
         if (!circleTurn) {
-            // Computer's turn
             computerMove();
         } else {
             enableHumanTurn();
@@ -121,10 +120,10 @@ const computerMove = () => {
             endGame(true);
         } else {
             swapTurns();
-            setBoardHoverClass();
+            // setBoardHoverClass();
             enableHumanTurn();
         }
-    }, 500); // Added delay to simulate thinking time
+    }, 500);
 };
 
 const minimax = (cells, depth, isMaximizing) => {
@@ -181,7 +180,7 @@ const enableHumanTurn = () => {
 };
 
 const startGame = () => {
-    circleTurn = true; // Human starts first
+    circleTurn = true;
     showScore();
     cellElements.forEach(cell => {
         cell.classList.remove(X_CLASS);
@@ -190,7 +189,7 @@ const startGame = () => {
         cell.removeEventListener('click', handleClick);
         cell.addEventListener('click', handleClick, { once: true });
     });
-    setBoardHoverClass();
+    // setBoardHoverClass();
     winningMessageElement.classList.remove('show');
     winningMessageTextElement.innerText = 'No Result';
 };
