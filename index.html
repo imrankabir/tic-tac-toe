@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0" />
     <title>Tic Tac Toe</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
-    <style type="text/css">
-      *,
-      *::after,
-      *::before {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-    </style>
-  </head>
-  <body>
-    <iframe src="https://bluegill-cute-leopard.ngrok-free.app" frameborder="0" id="iframe"></iframe>
-    <script>
-      const setDimensions = (event) => {
-        const iframe = document.querySelector("#iframe");
-        iframe.width = window.innerWidth + "px";
-        // iframe.height = window.innerHeight + 'px';
-        // iframe.width = (window.innerWidth - 15) + 'px';
-        iframe.height = window.innerHeight - 5 + "px";
-      };
-      setDimensions();
-      window.onresize = (event) => setDimensions();
-    </script>
-  </body>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="p px">X (<span id="x-wins">0/0</span>)</div>
+        <div class="p po">O (<span id="o-wins">0/0</span>)</div>
+        <div id="game-board" class="board">
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+        </div>
+        <div id="winning-message" class="winning-message">
+            <div data-winning-message-text>No Result</div>
+            <button id="restartButton">Restart</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
 </html>
