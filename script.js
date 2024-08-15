@@ -11,7 +11,7 @@ const WINNING_COMBINATIONS = [
     [2, 4, 6]
 ];
 
-const app = 'tic-tac-toe';
+const app = 'Tic Tac Toe';
 const VISITS_KEY = 'tic-tac-toe-visits';
 
 const cellElements = document.querySelectorAll('[data-cell]');
